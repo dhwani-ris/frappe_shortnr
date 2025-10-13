@@ -101,41 +101,6 @@ The app uses the following default QR code settings:
 - **Border**: 3 modules
 - **Error Correction**: High (30% error recovery)
 
-## 📁 File Structure
-
-```
-shortnr/
-├── shortnr/
-│   ├── doctype/
-│   │   ├── qr_code_generator/
-│   │   │   ├── qr_code_generator.json
-│   │   │   ├── qr_code_generator.py
-│   │   │   ├── qr_code_generator.js
-│   │   │   └── test_qr_code_generator.py
-│   │   └── webform_url_mapper/
-│   │       ├── webform_url_mapper.json
-│   │       └── webform_url_mapper.py
-│   ├── custom.py
-│   ├── hooks.py
-│   └── modules.txt
-├── requirements.txt
-└── README.md
-```
-
-## 🧪 Testing
-
-Run the test suite:
-
-```bash
-# Run all tests
-bench run-tests --app shortnr
-
-# Run specific test file
-bench run-tests --app shortnr --doctype "QR Code Generator"
-
-# Run with coverage
-bench run-tests --app shortnr --coverage
-```
 
 ## 🔌 API Reference
 
@@ -160,15 +125,6 @@ Fetches webform fields for dynamic rendering.
 **Returns:**
 - List of field dictionaries with fieldname, label, fieldtype, options
 
-## 🎨 Customization
-
-### Adding New QR Styles
-
-1. Import new style modules in `custom.py`:
-```python
-from qrcode.image.styles.moduledrawers import YourCustomDrawer
-from qrcode.image.styles.colormasks import YourCustomColorMask
-```
 
 ## 🚨 Troubleshooting
 
@@ -189,50 +145,9 @@ from qrcode.image.styles.colormasks import YourCustomColorMask
 - Check for JavaScript console errors
 - Verify CSS classes are not conflicting
 
-
-## 🤝 Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
-
-```bash
-cd apps/shortnr
-pre-commit install
-```
-
-### Pre-commit Tools
-
-- **ruff**: Python linting and formatting
-- **eslint**: JavaScript linting
-- **prettier**: Code formatting
-- **pyupgrade**: Python syntax upgrades
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Make your changes
-4. Run tests: `bench run-tests --app shortnr`
-5. Commit with pre-commit: `git commit -m "Add your feature"`
-6. Push to your fork
-7. Create a pull request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Support
-
-For support and questions:
-- **Email**: bhushan.barbuddhe@dhwaniris.com
-- **Issues**: [GitHub Issues](https://github.com/dhwani-ris/frappe_shortnr/issues)
-- **Documentation**: [Readme](https://github.com/dhwani-ris/frappe_shortnr/)
-
-## 🏢 Publisher
-
-**Dhwani RIS**
-- Website: [dhwaniris.com](https://dhwaniris.com/)
-- Email: bhushan.barbuddhe@dhwaniris.com
-
----
 
 Made with ❤️ by the Dhwani RIS team
