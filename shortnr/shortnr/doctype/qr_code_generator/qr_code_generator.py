@@ -14,7 +14,7 @@ class QRCodeGenerator(WebsiteGenerator):
 		random_code = random_string(5)
 		doc = frappe.get_value("QR Code Generator", {"route": random_code}, "name")
 		if doc:
-			frappe.throw(_("Try again, generated code is repeated on ") + doc.name)
+			frappe.throw(_("Try again, generated code is repeated on") + " " + doc.name)
 		else:
 			self.name = random_code
 
