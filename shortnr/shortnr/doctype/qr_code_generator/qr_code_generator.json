@@ -1,0 +1,189 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "allow_rename": 1,
+ "creation": "2025-09-15 17:57:04.637189",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_01",
+  "type",
+  "webform",
+  "logo",
+  "route",
+  "published",
+  "cb_01",
+  "long_url",
+  "short_url",
+  "qr_code",
+  "qr_preview",
+  "section_break_jhfr",
+  "webform_field_mapper",
+  "section_break_txcj",
+  "html_citq",
+  "form_data_tab",
+  "dynamic_inputs_html",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_01",
+   "fieldtype": "Section Break",
+   "label": "Url Shortener"
+  },
+  {
+   "fieldname": "short_url",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Short Url",
+   "length": 50
+  },
+  {
+   "fieldname": "long_url",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Long Url",
+   "options": "URL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "logo",
+   "fieldtype": "Attach",
+   "label": "Logo"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Route",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Published",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_01",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qr_code",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Qr Code"
+  },
+  {
+   "fieldname": "qr_preview",
+   "fieldtype": "HTML",
+   "hidden": 1,
+   "in_preview": 1,
+   "label": "Qr Preview",
+   "read_only": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Custom\nWebForm",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.type==\"WebForm\"",
+   "fieldname": "webform",
+   "fieldtype": "Link",
+   "label": "Webform",
+   "mandatory_depends_on": "eval:doc.type==\"WebForm\"",
+   "options": "Web Form"
+  },
+  {
+   "depends_on": "eval:!doc.__islocal",
+   "fieldname": "webform_field_mapper",
+   "fieldtype": "Table",
+   "label": "Webform Field Mapper",
+   "options": "Webform URL Mapper"
+  },
+  {
+   "fieldname": "dynamic_inputs_html",
+   "fieldtype": "HTML",
+   "label": "Dynamic Inputs"
+  },
+  {
+   "depends_on": "eval:doc.webform",
+   "fieldname": "form_data_tab",
+   "fieldtype": "Tab Break",
+   "label": "Form Data"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "QR Code Generator",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_jhfr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_txcj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "html_citq",
+   "fieldtype": "HTML",
+   "options": "<div style=\"font-family: sans-serif; line-height: 1.6; color: #333;\">\n  <h2 style=\"border-bottom: 2px solid #ddd; padding-bottom: 4px;\">Help</h2>\n  \n  <p style=\"margin-top: 1em;\">\n    This QR Code Generator creates short URLs and QR codes for your links. \n    You can generate QR codes for direct URLs or WebForms with pre-filled data. \n    The system automatically creates a short URL and generates a QR code with optional logo branding.\n  </p>\n\n  <h3 style=\"color: #2c3e50; margin-top: 1.5em;\">What You Can Do</h3>\n  <ul style=\"padding-left: 20px;\">\n    <li>Create <strong>short URLs</strong> that redirect to your target destination.</li>\n    <li>Generate <strong>QR codes</strong> for easy mobile scanning and sharing.</li>\n    <li>Add <strong>custom logos</strong> to brand your QR codes.</li>\n    <li>Configure <strong>WebForm pre-filling</strong> with default values.</li>\n    <li>Support both <strong>Custom URLs</strong> and <strong>WebForm links</strong>.</li>\n    <li>Download QR codes for printing on business cards, flyers, or marketing materials.</li>\n  </ul>\n\n  <h3 style=\"color: #2c3e50; margin-top: 1.5em;\">How to Fill This Form</h3>\n  <ol style=\"padding-left: 20px;\">\n    <li><strong>Type:</strong> Choose between:\n      <ul style=\"padding-left: 20px; margin-top: 8px;\">\n        <li><strong>Custom:</strong> For direct URLs, UPI links, or any custom destination</li>\n        <li><strong>WebForm:</strong> For WebForms with pre-filled field values</li>\n      </ul>\n    </li>\n    <li><strong>Long URL:</strong> Enter your target URL (required for Custom type). Must start with http://, https://, or upi://</li>\n    <li><strong>Webform:</strong> Select an existing WebForm (required for WebForm type)</li>\n    <li><strong>Logo:</strong> Upload a logo image to embed in your QR code (optional)</li>\n    <li><strong>WebForm Field Mapper:</strong> Configure default values for WebForm fields (appears when WebForm is selected)</li>\n    <li><strong>Save:</strong> The system automatically generates a short URL and QR code</li>\n  </ol>\n\n  <h3 style=\"color: #2c3e50; margin-top: 1.5em;\">WebForm Configuration</h3>\n  <p>When you select a WebForm type:</p>\n  <ul style=\"padding-left: 20px;\">\n    <li>The <strong>Field Mapper table</strong> automatically lists all WebForm fields</li>\n    <li>Use the <strong>Dynamic Inputs section</strong> to set default values</li>\n    <li>Leave fields empty if you want users to fill them manually</li>\n    <li>Pre-filled values are added as URL parameters when the QR code is scanned</li>\n  </ul>\n\n  <h3 style=\"color: #2c3e50; margin-top: 1.5em;\">Important Notes</h3>\n  <ul style=\"padding-left: 20px;\">\n    <li>URLs must start with <strong>http://</strong>, <strong>https://</strong>, or <strong>upi://</strong></li>\n    <li>Logo files should be <strong>square-shaped</strong> and under 1MB for best results</li>\n    <li>Supported logo formats: <strong>PNG, JPG, JPEG, SVG</strong></li>\n    <li>The document <strong>automatically submits</strong> after creation</li>\n    <li>Short URLs are <strong>auto-generated</strong> with random 5-character codes</li>\n    <li>QR codes are <strong>high-quality</strong> and ready for printing</li>\n  </ul>\n\n</div>"
+  }
+ ],
+ "has_web_view": 1,
+ "image_field": "qr_code",
+ "is_published_field": "published",
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-10-13 11:07:43.110699",
+ "modified_by": "Administrator",
+ "module": "ShortNR",
+ "name": "QR Code Generator",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_preview_popup": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "short_url",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

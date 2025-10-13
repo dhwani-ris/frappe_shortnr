@@ -1,33 +1,153 @@
-### ShortNR
+# Frappe Shortner
 
-ShortNR is a lightweight and powerful Frappe app that lets you easily create short URLs and QR codes directly from your Frappe desk.
+A comprehensive Frappe app for generating short URLs and QR codes with advanced webform integration and dynamic field mapping.
 
-### Installation
+## 🚀 Features
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+- **URL Shortening**: Convert long URLs into short, shareable links
+- **QR Code Generation**: Create styled QR codes with custom logos and designs
+- **Webform Integration**: Dynamic field mapping from Frappe webforms
+- **Offline Support**: Generate QR codes without internet connectivity
+
+## 📋 Requirements
+
+- Frappe Framework (v14+)
+- Python 3.8+
+- PIL/Pillow for image processing
+- qrcode library for QR generation
+
+## 🛠️ Installation
+
+### Using Bench CLI
 
 ```bash
+# Navigate to your bench directory
 cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch feat-qr-short-url
+
+# Get the app from repository
+bench get-app https://github.com/dhwani-ris/frappe_shortnr.git --branch develop
+
+# Install the app
+bench install-app shortnr
+
+# Migrate database
+bench migrate
+```
+
+### Manual Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/dhwani-ris/frappe_shortnr.git apps/shortnr
+
+# Install dependencies
+cd apps/shortnr
+pip install -r requirements.txt
+
+# Install the app
 bench install-app shortnr
 ```
 
-### Contributing
+## 🎯 Usage
 
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+### 1. URL Shortening
 
-```bash
-cd apps/shortnr
-pre-commit install
-```
+1. Navigate to **QR Code Generator** doctype
+2. Select **Type** as "URL Shortener"
+3. Enter your **Long URL**
+4. Click **Save** to generate short URL
+5. Copy the generated **Short URL**
 
-Pre-commit is configured to use the following tools for checking and formatting your code:
+### 2. QR Code Generation
 
-- ruff
-- eslint
-- prettier
-- pyupgrade
+#### Basic QR Code
+1. Select **Type** as "QR Code"
+2. Enter the data to encode
+3. Click **Save** to generate QR code
+4. View the **QR Preview**
 
-### License
+#### Styled QR Code with Logo
+1. Upload a **Logo** image
+2. The QR code will automatically include your logo
+3. Custom styling includes:
+   - Radial gradient color masks
+   - Gapped square module drawers
+   - Square eye drawers
 
-mit
+### 3. Webform Integration
+
+#### Setup Webform Mapping
+1. Select **Type** as "Webform"
+2. Choose your **Webform** from the dropdown
+3. The app automatically fetches webform fields
+4. Fields are organized into:
+   - **Complex Fields**: Text areas, tables, file uploads (2-column layout)
+   - **Simple Fields**: Input fields, selects, dates (4-column layout)
+
+#### Dynamic Field Rendering
+- Fields are automatically categorized by type
+- Complex fields get more space in 2-column layout
+- Simple fields are efficiently arranged in 4-column layout
+- Fixed-width columns with justified alignment
+- Responsive design for mobile devices
+
+## 🔧 Configuration
+
+### QR Code Settings
+
+The app uses the following default QR code settings:
+- **Version**: 7 (supports up to 1,816 characters)
+- **Box Size**: 6 pixels
+- **Border**: 3 modules
+- **Error Correction**: High (30% error recovery)
+
+
+## 🔌 API Reference
+
+### Custom Functions
+
+#### `get_qrcode(input_data, logo)`
+Generates a styled QR code with optional logo embedding.
+
+**Parameters:**
+- `input_data` (str): Data to encode in QR code
+- `logo` (str, optional): Path to logo image
+
+**Returns:**
+- Base64 encoded PNG image data URL
+
+#### `get_webform_fields(webform)`
+Fetches webform fields for dynamic rendering.
+
+**Parameters:**
+- `webform` (str): Webform name
+
+**Returns:**
+- List of field dictionaries with fieldname, label, fieldtype, options
+
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+#### QR Code Not Generating
+- Check if PIL/Pillow is installed: `pip install Pillow`
+- Verify qrcode library: `pip install qrcode[pil]`
+- Check file permissions for logo uploads
+
+#### Webform Fields Not Loading
+- Ensure webform exists and is published
+- Check field permissions in webform
+- Verify webform field types are supported
+
+#### Layout Issues
+- Clear browser cache
+- Check for JavaScript console errors
+- Verify CSS classes are not conflicting
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+Made with ❤️ by the Dhwani RIS team
