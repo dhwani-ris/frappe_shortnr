@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "sb_01",
+  "qr_name",
   "type",
   "webform",
   "logo",
@@ -44,8 +45,8 @@
    "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Long Url",
-   "options": "URL",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.type==\"Custom\"",
+   "options": "URL"
   },
   {
    "fieldname": "logo",
@@ -140,6 +141,12 @@
    "fieldname": "html_citq",
    "fieldtype": "HTML",
    "options": "<div style=\"font-family: sans-serif; line-height: 1.6; color: #333;\">\n  <h2 style=\"border-bottom: 2px solid #ddd; padding-bottom: 4px;\">Help</h2>\n  \n  <p style=\"margin-top: 1em;\">\n    This QR Code Generator creates short URLs and QR codes for your links. \n    You can generate QR codes for direct URLs or WebForms with pre-filled data. \n    The system automatically creates a short URL and generates a QR code with optional logo branding.\n  </p>\n\n  <h3 style=\"color: #2c3e50; margin-top: 1.5em;\">What You Can Do</h3>\n  <ul style=\"padding-left: 20px;\">\n    <li>Create <strong>short URLs</strong> that redirect to your target destination.</li>\n    <li>Generate <strong>QR codes</strong> for easy mobile scanning and sharing.</li>\n    <li>Add <strong>custom logos</strong> to brand your QR codes.</li>\n    <li>Configure <strong>WebForm pre-filling</strong> with default values.</li>\n    <li>Support both <strong>Custom URLs</strong> and <strong>WebForm links</strong>.</li>\n    <li>Download QR codes for printing on business cards, flyers, or marketing materials.</li>\n  </ul>\n\n  <h3 style=\"color: #2c3e50; margin-top: 1.5em;\">How to Fill This Form</h3>\n  <ol style=\"padding-left: 20px;\">\n    <li><strong>Type:</strong> Choose between:\n      <ul style=\"padding-left: 20px; margin-top: 8px;\">\n        <li><strong>Custom:</strong> For direct URLs, UPI links, or any custom destination</li>\n        <li><strong>WebForm:</strong> For WebForms with pre-filled field values</li>\n      </ul>\n    </li>\n    <li><strong>Long URL:</strong> Enter your target URL (required for Custom type). Must start with http://, https://, or upi://</li>\n    <li><strong>Webform:</strong> Select an existing WebForm (required for WebForm type)</li>\n    <li><strong>Logo:</strong> Upload a logo image to embed in your QR code (optional)</li>\n    <li><strong>WebForm Field Mapper:</strong> Configure default values for WebForm fields (appears when WebForm is selected)</li>\n    <li><strong>Save:</strong> The system automatically generates a short URL and QR code</li>\n  </ol>\n\n  <h3 style=\"color: #2c3e50; margin-top: 1.5em;\">WebForm Configuration</h3>\n  <p>When you select a WebForm type:</p>\n  <ul style=\"padding-left: 20px;\">\n    <li>The <strong>Field Mapper table</strong> automatically lists all WebForm fields</li>\n    <li>Use the <strong>Dynamic Inputs section</strong> to set default values</li>\n    <li>Leave fields empty if you want users to fill them manually</li>\n    <li>Pre-filled values are added as URL parameters when the QR code is scanned</li>\n  </ul>\n\n  <h3 style=\"color: #2c3e50; margin-top: 1.5em;\">Important Notes</h3>\n  <ul style=\"padding-left: 20px;\">\n    <li>URLs must start with <strong>http://</strong>, <strong>https://</strong>, or <strong>upi://</strong></li>\n    <li>Logo files should be <strong>square-shaped</strong> and under 1MB for best results</li>\n    <li>Supported logo formats: <strong>PNG, JPG, JPEG, SVG</strong></li>\n    <li>The document <strong>automatically submits</strong> after creation</li>\n    <li>Short URLs are <strong>auto-generated</strong> with random 5-character codes</li>\n    <li>QR codes are <strong>high-quality</strong> and ready for printing</li>\n  </ul>\n\n</div>"
+  },
+  {
+   "fieldname": "qr_name",
+   "fieldtype": "Data",
+   "label": "Qr Name",
+   "reqd": 1
   }
  ],
  "has_web_view": 1,
@@ -147,7 +154,7 @@
  "is_published_field": "published",
  "is_submittable": 1,
  "links": [],
- "modified": "2025-10-13 11:07:43.110699",
+ "modified": "2025-11-21 15:51:48.797204",
  "modified_by": "Administrator",
  "module": "ShortNR",
  "name": "QR Code Generator",
@@ -182,7 +189,7 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "short_url",
+ "title_field": "qr_name",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1
