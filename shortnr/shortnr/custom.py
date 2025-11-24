@@ -8,8 +8,15 @@ import frappe
 import qrcode
 from PIL import Image
 from qrcode.image.styledpil import StyledPilImage
-from qrcode.image.styles.colormasks import HorizontalGradiantColorMask, ImageColorMask, RadialGradiantColorMask, SquareGradiantColorMask, VerticalGradiantColorMask
-from qrcode.image.styles.moduledrawers import CircleModuleDrawer, GappedSquareModuleDrawer, HorizontalBarsDrawer, RoundedModuleDrawer, SquareModuleDrawer, VerticalBarsDrawer
+from qrcode.image.styles.colormasks import RadialGradiantColorMask
+from qrcode.image.styles.moduledrawers import (
+	CircleModuleDrawer,
+	GappedSquareModuleDrawer,
+	HorizontalBarsDrawer,
+	RoundedModuleDrawer,
+	SquareModuleDrawer,
+	VerticalBarsDrawer,
+)
 
 
 def _create_qr_code(input_data):
