@@ -8,13 +8,7 @@ import frappe
 import qrcode
 from PIL import Image
 from qrcode.image.styledpil import StyledPilImage
-from qrcode.image.styles.colormasks import (
-	HorizontalGradiantColorMask,
-	ImageColorMask,
-	RadialGradiantColorMask,
-	SquareGradiantColorMask,
-	VerticalGradiantColorMask,
-)
+from qrcode.image.styles.colormasks import RadialGradiantColorMask
 from qrcode.image.styles.moduledrawers import (
 	CircleModuleDrawer,
 	GappedSquareModuleDrawer,

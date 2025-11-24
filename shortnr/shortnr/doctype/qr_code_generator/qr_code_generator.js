@@ -156,6 +156,26 @@ frappe.ui.form.on("QR Code Generator", {
 	refresh(frm) {
 		_render_qr_preview(frm);
 		_rebuild_dynamic_inputs(frm);
+
+		// Add Copy Short URL button
+		if (frm.doc.short_url && !frm.doc.__islocal) {
+			frm.add_custom_button(__("Copy Short URL"), () => {
+				navigator.clipboard
+					.writeText(frm.doc.short_url)
+					.then(() => {
+						frappe.show_alert(
+							{
+								message: __("Short URL copied to clipboard!"),
+								indicator: "green",
+							},
+							3
+						);
+					})
+					.catch(() => {
+						frappe.msgprint(__("Failed to copy URL"));
+					});
+			});
+		}
 	},
 });
 
