@@ -31,11 +31,11 @@ class QRCodeGenerator(WebsiteGenerator):
 		if self.type == "WebForm" and self.webform:
 			webform_route = frappe.get_value("Web Form", self.webform, "route")
 			self.long_url = get_url(webform_route) + "/new"
-		
+
 		# Append webform field values if mapped
 		if self.long_url:
 			self.long_url = self.append_webform_fields_values(self.long_url)
-		
+
 		url_short = "".join([self.name])
 		qr_code = get_url(url_short)
 		logo_files = frappe.get_all(
@@ -63,7 +63,7 @@ class QRCodeGenerator(WebsiteGenerator):
 	def append_webform_fields_values(self, url):
 		if not url:
 			return url
-		
+
 		params = []
 		for field in self.webform_field_mapper:
 			if field.value:
