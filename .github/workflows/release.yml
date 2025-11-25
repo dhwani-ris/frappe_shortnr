@@ -15,11 +15,18 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
+      - name: Generate GitHub App Token
+        id: generate-token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.DHWANI_RELEASE_BOT_APP_ID }}
+          private_key: ${{ secrets.DHWANI_RELEASE_BOT_PRIVATE_KEY }}
+
       - name: Checkout Entire Repository
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.generate-token.outputs.token }}
           persist-credentials: true
           
       - name: Setup Node.js
@@ -30,6 +37,11 @@ jobs:
       - name: Setup dependencies
         run: |
           npm install @semantic-release/git @semantic-release/exec @semantic-release/github @semantic-release/changelog --no-save
+      
+      - name: Configure Git
+        run: |
+          git config --global user.name "dhwani-release-bot"
+          git config --global user.email "dhwani-release-bot[bot]@users.noreply.github.com"
           
       - name: Create Release
         env:
