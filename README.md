@@ -151,3 +151,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 
 Made with ❤️ by the Dhwani RIS team
+
+
+<!-- Security scan triggered at 2026-08-31 16:58:05 -->
